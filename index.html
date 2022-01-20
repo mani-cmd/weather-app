@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Weather Report app portfolio project"
+        />
+        <link
+            rel="shortcut icon"
+            href="./images/favicon.png"
+            type="image/x-icon"
+        />
+        <link rel="stylesheet" href="./style.css" />
+        <script defer type="module" src="./app.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Monda:wght@700&family=Montserrat:wght@300;400;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <title>Weather Report App</title>
+    </head>
+    <body>
+        <main class="main-container">
+            <h1 class="heading">Weather App</h1>
+            <div class="input-container">
+                <div id="geocoder" class="input-bar"></div>
+                <div class="button-container">
+                    <button class="location-btn" id="location-btn">
+                        Get report for my current location
+                    </button>
+                </div>
+            </div>
+            <div class="wrapper">
+                <div class="data">
+                    <p>Location : <span class="location">none</span></p>
+                    <p>Latitude : <span class="latitude"> none</span></p>
+                    <p>Longitude : <span class="longitude">none</span></p>
+                    <p>Weather : <span class="weather">none</span></p>
+                    <p>Discription : <span class="weatherDis">none</span></p>
+                    <p>Temperature : <span class="temperature">none</span></p>
+                    <p>Wind Speed : <span class="wind-speed">none</span></p>
+                    <p>
+                        Wind Direction :
+                        <span class="wind-direction">none</span>
+                    </p>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
