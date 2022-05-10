@@ -2,9 +2,11 @@ import "./style.css";
 import mapboxgl from "mapbox-gl/dist/mapbox-gl";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
+import { createApi } from "unsplash-js";
 
 const LocationButtonElement = document.querySelector("#location-btn");
 const WEATHER_API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
+const UNSPLASH_API_KEY = import.meta.env.VITE_UNSPLASH_ACCESS_KEY
 
 if (navigator.geolocation) {
     LocationButtonElement.addEventListener("click", () => {
@@ -21,6 +23,11 @@ if (navigator.geolocation) {
     }
 }
 
+const unsplash = createApi({
+    accessKey: UNSPLASH_API_KEY,
+    fetch: fetch
+  });
+  
 async function setWeatherData(lat, long) {
     let weatherUrl = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=metric&appid=${WEATHER_API_KEY}`;
     let response = await fetch(weatherUrl);
@@ -43,6 +50,22 @@ async function setWeatherData(lat, long) {
     temperature.innerHTML = data.main.temp + " &#8451";
     windSpeed.innerHTML = data.wind.speed + " meter/sec";
     windDirection.innerHTML = data.wind.deg + " &#176";
+
+    console.log(data);
+    setBackground(data.weather[0].description);
+}
+
+let setBackground = async (info) => {
+ let imgData = await unsplash.search.getPhotos({
+    query: info,
+    page: 1,
+    perPage: 10,
+ })
+    let random = Math.floor((Math.random() * 10))
+    let linking = document.querySelector("#linking")
+    linking.href = imgData.response.results[random].links.html
+    document.body.style.backgroundImage = `url(${imgData.response.results[random].urls.regular})`
+    console.log(imgData.response.results[random].urls.small)
 }
 
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
