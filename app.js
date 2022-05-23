@@ -51,7 +51,7 @@ async function setWeatherData(lat, long) {
     windSpeed.innerHTML = data.wind.speed + " meter/sec";
     windDirection.innerHTML = data.wind.deg + " &#176";
 
-    console.log(data);
+//    console.log(data);
     setBackground(data.weather[0].description);
 }
 
